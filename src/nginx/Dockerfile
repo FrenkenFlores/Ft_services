@@ -2,7 +2,7 @@ FROM    alpine:latest
 RUN		apk upgrade && apk update
 RUN		apk add nginx
 RUN		apk add openssl
-COPY	./configs/nginx.conf /etc/nginx/conf.d/default.conf
+COPY	./src/nginx.conf /etc/nginx/conf.d/default.conf
 RUN		openssl req \
 -days 365 \
 -newkey rsa:4096 \
@@ -14,4 +14,4 @@ RUN		openssl req \
 -subj	'/C=RU/ST=MS/L=MOSCOW/O=21-SCHOOL/OU=MIRAGE/CN=fflores'
 RUN		mkdir -p /run/nginx
 EXPOSE	8080 443
-CMD		["/src/start_server.sh"]
+CMD     nginx -g 'daemon off;'
