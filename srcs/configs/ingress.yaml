@@ -6,6 +6,23 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
-          serviceName: nginx
+      - path: /
+        backend:
+          serviceName: nginx-service
           servicePort: 80
+      - path: /wordpress
+        backend:
+          serviceName: wordpress-service
+          servicePort: 5050
+#      - path: /phpmyadmin
+#        backend:
+#          serviceName: phpmyadmin-service
+#          servicePort: 80
+#      - path: /grafana
+#        backend:
+#          serviceName: grafana-service
+#          servicePort: 80
+#      - path: /ftps
+#        backend:
+#          serviceName: ftps-serive
+#          servicePort: 80
