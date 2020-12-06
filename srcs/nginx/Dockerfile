@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 #Ports
 EXPOSE 80
 EXPOSE 443
