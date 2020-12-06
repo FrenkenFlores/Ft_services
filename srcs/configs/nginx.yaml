@@ -17,9 +17,7 @@ spec:
     nodePort: 22
     targetPort: 22
     name: ssh
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
