@@ -20,7 +20,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'wordpress_database' );
 
 /** MySQL database username */
 define( 'DB_USER', 'fflores' );
@@ -29,7 +29,7 @@ define( 'DB_USER', 'fflores' );
 define( 'DB_PASSWORD', 'fflores' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'wordpress' );
+define( 'DB_HOST', 'mysql-service' );
 
 define('WP_HOME', 'http://localhost:5050' );
 define('WP_SITEURL', 'http://localhost:5050' );
