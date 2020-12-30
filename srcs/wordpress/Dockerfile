@@ -1,6 +1,5 @@
 FROM alpine:latest
 EXPOSE 5050
-ARG IP
 RUN apk update
 
 #Setup php and it's extensions

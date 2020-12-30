@@ -1,7 +1,5 @@
-secretGenerator:
-- name: mysql-pass
-  literals:
-  - password=fflores
 resources:
+  - metallb.yaml
+  - nginx.yaml
   - mysql.yaml
   - wordpress.yaml
