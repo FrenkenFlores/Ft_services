@@ -29,7 +29,7 @@ define( 'DB_USER', 'fflores' );
 define( 'DB_PASSWORD', 'fflores' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql-service' );
+define( 'DB_HOST', 'wordpress-mysql' );
 
 define('WP_HOME', 'http://localhost:5050' );
 define('WP_SITEURL', 'http://localhost:5050' );
