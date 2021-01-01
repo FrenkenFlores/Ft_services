@@ -13,8 +13,8 @@ RUN mkdir /www
 RUN	wget https://wordpress.org/latest.tar.gz
 RUN	tar -zxvf latest.tar.gz -C /www/ && rm latest.tar.gz
 COPY ./wp-config.php /www/wordpress/
+COPY ./ip.txt /
 #Launch
-RUN echo $IP > ip.txt
 COPY start.sh .
 RUN chmod +x start.sh
 CMD ./start.sh
