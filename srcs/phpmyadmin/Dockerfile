@@ -1,7 +1,7 @@
 FROM alpine
 EXPOSE 5000
 RUN apk update && apk upgrade
-RUN apk add php7 php7-fpm php7-opcache \
+RUN apk add nginx php7 php7-fpm php7-opcache \
     php7-gd php7-mysqli php7-zlib php7-curl \
     php7-mbstring php7-json php7-session php7-common \
     php7-iconv php7-xml php7-imap php7-cgi fcgi php7-pdo \
@@ -9,11 +9,16 @@ RUN apk add php7 php7-fpm php7-opcache \
     php7-posix php7-mcrypt php7-gettext \
     php7-ldap php7-ctype php7-dom
 
+RUN adduser -D -g 'www' www
 RUN mkdir /www
+RUN mkdir -p /run/nginx
+RUN chown -R www:www /var/lib/nginx
+RUN chown -R www:www /www
 RUN	wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-english.tar.gz
 RUN	tar -xzvf phpMyAdmin-4.9.5-english.tar.gz -C /www/ && rm phpMyAdmin-4.9.5-english.tar.gz
 RUN	mv /www/phpMyAdmin-4.9.5-english/ /www/phpmyadmin/
 COPY config.inc.php /www/phpmyadmin/
+COPY nginx_phpmyadmin.conf /etc/nginx/conf.d/default.conf
 
 COPY start.sh /
 RUN chmod +x start.sh
