@@ -17,3 +17,6 @@ kubectl apply -f ./srcs/configs/phpmyadmin.yaml
 kubectl get svc | awk '{print $4}' | grep 192 | awk 'NR==1' > ./srcs/wordpress/ip.txt
 docker build -t wordpress-image ./srcs/wordpress
 kubectl apply -f ./srcs/configs/wordpress.yaml
+#copy ssh-key into nginx-server
+#IP=$(kubectl get svc | awk '{print $4}' | grep 192 | awk 'NR==1');
+#ssh-copy-id root@$IP

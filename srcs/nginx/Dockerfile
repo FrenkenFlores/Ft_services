@@ -3,6 +3,8 @@ EXPOSE 80 443 22
 RUN apk upgrade && apk update
 RUN apk add nginx
 RUN apk add openssl
+RUN apk add openssh
+RUN apk add openrc
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN mkdir -p /run/nginx
