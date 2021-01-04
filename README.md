@@ -1,4 +1,5 @@
 # Ft_services
+http://pushorigin.ru/docker/alpine
 https://habr.com/ru/post/155853/
 https://nginx.org/ru/docs/beginners_guide.html
 https://kinsta.com/knowledgebase/mysql-hostname/
@@ -19,3 +20,5 @@ https://qna.habr.com/q/127571 (13: Permission denied)
 https://linux.die.net/man/5/ssh_config
 https://linux.die.net/man/5/sshd_config
 https://habr.com/ru/post/122445/ (ssh)
+https://habr.com/ru/post/128117/ (ftp-server)
+https://stackoverflow.com/questions/41935435/understanding-volume-instruction-in-dockerfile
