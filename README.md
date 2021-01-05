@@ -23,3 +23,5 @@ https://habr.com/ru/post/122445/ (ssh)
 https://habr.com/ru/post/128117/ (ftp-server)
 https://stackoverflow.com/questions/41935435/understanding-volume-instruction-in-dockerfile
 https://security.appspot.com/vsftpd.html
+https://docs.influxdata.com/telegraf/v1.12/
+https://docs.influxdata.com/influxdb/v2.0/get-started/
