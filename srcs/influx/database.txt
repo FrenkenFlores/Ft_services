@@ -1,0 +1,3 @@
+CREATE DATABASE telegraf
+CREATE USER fflores with password 'fflores'
+GRANT ALL on telegraf to fflores

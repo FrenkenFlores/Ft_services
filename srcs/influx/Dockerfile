@@ -17,6 +17,7 @@ COPY influxdb.conf /etc/influxdb/influxdb.conf
 COPY entrypoint.sh /entrypoint.sh
 COPY init-influxdb.sh /init-influxdb.sh
 COPY start.sh /start.sh
+COPY database.txt /
 RUN chmod +x start.sh
 #ENTRYPOINT ["/entrypoint.sh"]
 #CMD ["influxd"]

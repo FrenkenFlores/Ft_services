@@ -25,3 +25,5 @@ https://stackoverflow.com/questions/41935435/understanding-volume-instruction-in
 https://security.appspot.com/vsftpd.html
 https://docs.influxdata.com/telegraf/v1.12/
 https://docs.influxdata.com/influxdb/v2.0/get-started/
+http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+https://github.com/influxdata/influxdata-docker/tree/636da53f332fd930ea15b2d4d54614571cbeff2d

@@ -9,6 +9,7 @@ docker build -t mysql-image ./srcs/mysql
 docker build -t phpmyadmin-image ./srcs/phpmyadmin
 docker build -t influx-image ./srcs/influx
 docker build -t grafana-image ./srcs/grafana
+docker build -t telegraf-image ./srcs/telegraf
 docker build -t test-image ./srcs/test
 kubectl apply -f ./srcs/configs/metallb.yaml
 kubectl apply -f ./srcs/configs/nginx.yaml
@@ -17,6 +18,7 @@ kubectl apply -f ./srcs/configs/phpmyadmin.yaml
 kubectl apply -f ./srcs/configs/ftps.yaml
 kubectl apply -f ./srcs/configs/grafana.yaml
 kubectl apply -f ./srcs/configs/influx.yaml
+kubectl apply -f ./srcs/configs/telegraf.yaml
 kubectl apply -f ./srcs/configs/test.yaml
 #kubectl create -k ./srcs/configs/
 kubectl get svc | awk '{print $4}' | grep 192 | awk 'NR==1' > ./srcs/wordpress/ip.txt
