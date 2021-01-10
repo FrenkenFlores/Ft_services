@@ -6,7 +6,7 @@ RUN apk add --upgrade bash
 RUN apk add libc6-compat wget 
 RUN wget https://dl.grafana.com/oss/release/grafana-6.6.0.linux-amd64.tar.gz
 RUN tar -zxvf grafana-6.6.0.linux-amd64.tar.gz
-#COPY grafana.ini /etc/grafana/grafana.ini
+COPY grafana.ini /grafana-6.6.0/grafana.ini
 #COPY influxdb-datasource.yaml /grafana-6.6.0/conf/provisioning/datasources/influxdb.yaml
 #COPY dashboards.yaml /grafana-6.6.0/conf/provisioning/dashboards/dashboards.yaml
 #COPY ./json/* /grafana-6.6.0/public/dashboards/

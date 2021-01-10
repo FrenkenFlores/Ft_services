@@ -30,3 +30,5 @@ https://github.com/influxdata/influxdata-docker/tree/636da53f332fd930ea15b2d4d54
 http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/
 (passive mode): http://tokarchuk.ru/2011/02/vsftpd-passive-mode-firewall-iptables-ubunt/
 https://www.opennet.ru/base/net/vsftpd_overview.txt.html
+(post about influxdb) https://tproger.ru/translations/influxdb-guide/
+(influxdb+telegraf) https://www.dmosk.ru/miniinstruktions.php?mini=telegraf-influxdb

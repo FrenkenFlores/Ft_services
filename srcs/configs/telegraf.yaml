@@ -30,13 +30,13 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-        env:
-          - name: USER
-            value: "fflores"
-          - name: INFLUX_PASSWORD
-            value: "fflores"
-          - name: INFLUX_URL
-            value: "http://influxdb-service:8086"
+#        env:
+#          - name: USER
+#            value: "fflores"
+#          - name: INFLUX_PASSWORD
+#            value: "fflores"
+#          - name: INFLUX_URL
+#            value: "http://influxdb-service:8086"
         ports:
         - containerPort: 8094
 
