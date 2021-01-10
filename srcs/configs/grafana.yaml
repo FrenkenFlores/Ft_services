@@ -12,6 +12,19 @@ spec:
   - port: 3000
     targetPort: 3000
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pv-claim
+  labels:
+    app: grafana
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
   apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -33,7 +46,23 @@ spec:
           resources:
             limits:
               memory: "128Mi"
-              cpu: "500m"
+              cpu: "100m"
+          env:
+            - name: GF_DATABASE_TYPE
+              value: "sqlite3"
+            - name: GF_DATABASE_HOST
+              value: "http://influxdb-service:8086"
+            - name: GF_DATABASE_NAME
+              value: "telegraf"
+            - name: GF_DATABASE_USER
+              value: "fflores"
           ports:
           - containerPort: 3000
+          volumeMounts:
+          - name: grafana-persistent-storage
+            mountPath: /var/lib/grafana
+        volumes:
+        - name: grafana-persistent-storage
+          persistentVolumeClaim:
+            claimName: grafana-pv-claim
   

@@ -1,8 +1,9 @@
 #!/bin/sh
-set -e
+#set -e
+#
+#if [ "${1:0:1}" = '-' ]; then
+#    set -- telegraf "$@"
+#fi
 
-if [ "${1:0:1}" = '-' ]; then
-    set -- telegraf "$@"
-fi
-
-exec "$@"
+#exec "$@"
+telegraf --config telegraf.conf

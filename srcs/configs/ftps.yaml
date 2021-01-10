@@ -9,8 +9,28 @@ spec:
   selector:
     app: ftps
   ports:
-  - port: 21
+  - name: std
+    port: 21
     targetPort: 21
+  - name: std2
+    port: 20
+    targetPort: 20
+  - name: passive01
+    port: 2000
+    targetPort: 2000
+  - name: passive02
+    port: 2001
+    targetPort: 2001
+  - name: passive03
+    port: 2002
+    targetPort: 2002
+  - name: passive04
+    port: 2003
+    targetPort: 2003
+  - name: passive05
+    port: 2004
+    targetPort: 2004
+  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,7 +53,14 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "100m"
         ports:
         - containerPort: 21
+        - containerPort: 20
+        - containerPort: 2000
+        - containerPort: 2001
+        - containerPort: 2002
+        - containerPort: 2003
+        - containerPort: 2004
+
 
