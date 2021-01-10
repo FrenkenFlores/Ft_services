@@ -5,8 +5,11 @@ datasources:
   orgId: 1
   url: http://influxdb-service:8086
   database: telegraf
+  user: fflores
+  password: fflores
+  access: proxy
   version: 1
-  editable: true
+  editable: false
   basicAuth: true
   basicAuthUser: fflores
   basicAuthPassword: fflores

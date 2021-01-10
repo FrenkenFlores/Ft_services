@@ -6,7 +6,8 @@ kubectl delete --all pods
 kubectl delete --all services
 kubectl delete --all pvc
 kubectl delete --all configmap
-#docker rmi $(docker images | awk '{print $3}' | awk 'NR==1, NR==11')
+kubectl delete --all ds
+#docker rmi $(docker images | awk '{print $3}' | awk 'NR==1, NR==7')
 #kubectl delete deployment wordpress-mysql
 #kubectl delete svc wordpress-mysql
 #kubectl delete pvc mysql-pv-claim

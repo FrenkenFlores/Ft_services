@@ -32,3 +32,5 @@ http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/
 https://www.opennet.ru/base/net/vsftpd_overview.txt.html
 (post about influxdb) https://tproger.ru/translations/influxdb-guide/
 (influxdb+telegraf) https://www.dmosk.ru/miniinstruktions.php?mini=telegraf-influxdb
+
+https://grafana.com/docs/grafana/latest/administration/provisioning/
