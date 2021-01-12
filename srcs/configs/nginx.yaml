@@ -37,7 +37,6 @@ spec:
       labels:
         app: nginx
     spec:
-      pod-template-hash: nginx
       containers:
       - name: nginx
         image: nginx-image

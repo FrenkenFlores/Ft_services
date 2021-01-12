@@ -96,7 +96,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "wordpress-7c7b58b66c-hrlkc"
+                "value": "wordpress"
               }
             ]
           }
@@ -220,7 +220,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "wordpress-7c7b58b66c-hrlkc"
+                "value": "wordpress"
               }
             ]
           }
@@ -344,7 +344,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "wordpress-7c7b58b66c-hrlkc"
+                "value": "wordpress"
               }
             ]
           }

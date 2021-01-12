@@ -96,7 +96,7 @@
             {
               "key": "host",
               "operator": "=",
-              "value": "nginx-deployment-7b8bf85c79-dw4ff"
+              "value": "nginx"
             }
           ]
         }
@@ -220,7 +220,7 @@
             {
               "key": "host",
               "operator": "=",
-              "value": "nginx-deployment-7b8bf85c79-dw4ff"
+              "value": "nginx"
             }
           ]
         }
@@ -344,7 +344,7 @@
             {
               "key": "host",
               "operator": "=",
-              "value": "nginx-deployment-7b8bf85c79-dw4ff"
+              "value": "nginx"
             }
           ]
         }

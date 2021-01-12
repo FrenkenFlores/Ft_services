@@ -1,4 +1,0 @@
-resources:
-  - nginx.yaml
-  - mysql.yaml
-  - wordpress.yaml

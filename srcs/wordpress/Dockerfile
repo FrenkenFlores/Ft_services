@@ -1,14 +1,11 @@
 FROM alpine:latest
 EXPOSE 5050
 RUN apk update  && apk upgrade
-
-#Setup php and it's extensions
+RUN apk add wget
 RUN apk add nginx php7 php7-fpm php7-opcache \
 php7-gd php7-mysqli php7-zlib php7-curl \
 php7-mbstring php7-json php7-session
-RUN apk add wget
-#RUN apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
-#Wordpress setup
+
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN mkdir -p /run/nginx
@@ -36,9 +33,6 @@ RUN mkdir -p /usr/src /etc/telegraf && \
     cp -a /usr/src/telegraf*/usr/bin/telegraf /usr/bin/ && \
     rm -rf *.tar.gz* /usr/src && rm /etc/telegraf/telegraf.conf
 COPY telegraf.conf /
-
-
-
 
 #Launch
 COPY start.sh .
