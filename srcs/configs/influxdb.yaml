@@ -45,19 +45,6 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-#          env:
-#            - name: INFLUXDB_DB
-#              value: "telegraf"
-#            - name: INFLUXDB_ADMIN_USER
-#              value: "fflores"
-#            - name: INFLUXDB_ADMIN_PASSWORD
-#              value: "fflores"
-#            - name: INFLUXDB_ADMIN_ENABLED
-#              value: "true"
-#            - name: INFLUXDB_USER
-#              value: "fflores"
-#            - name: INFLUXDB_USER_PASSWORD
-#              value: "fflores"
           ports:
           - containerPort: 8086
           volumeMounts:

@@ -12,4 +12,5 @@ chown -R nginx:nginx 0700 /var/lib/nginx/
 #php --server 0.0.0.0:5050 --docroot /www/wordpress/
 #php -S 0.0.0.0:5050 -t /www/wordpress/
 php-fpm7
+telegraf --config telegraf.conf &
 nginx -g 'daemon off;'

@@ -9,7 +9,8 @@ spec:
   selector:
     app: grafana
   ports:
-  - port: 3000
+  - name: grafana
+    port: 3000
     targetPort: 3000
 ---
 apiVersion: v1

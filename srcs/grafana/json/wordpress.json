@@ -15,326 +15,25 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 2,
+    "id": 13,
     "links": [],
     "panels": [
-      {
-        "datasource": "influxdb",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {
-              "align": null
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 5,
-          "x": 0,
-          "y": 0
-        },
-        "id": 4,
-        "options": {
-          "reduceOptions": {
-            "calcs": [
-              "mean"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true
-        },
-        "pluginVersion": "7.1.5",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "docker_container_mem",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT mean(\"usage\") FROM \"docker_container_mem\" WHERE (\"app\" = \"$instamce\") AND $timeFilter GROUP BY time($__interval) fill(null)",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "usage"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "app",
-                "operator": "=",
-                "value": "wordpress"
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Rad usage gauge",
-        "type": "gauge"
-      },
-      {
-        "datasource": "influxdb",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {
-              "align": null
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 6,
-          "x": 5,
-          "y": 0
-        },
-        "id": 8,
-        "options": {
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "mean"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showThresholdLabels": false,
-          "showThresholdMarkers": true
-        },
-        "pluginVersion": "7.1.5",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "docker_container_status",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "uptime_ns"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                },
-                {
-                  "params": [
-                    " / 60000000000"
-                  ],
-                  "type": "math"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "app",
-                "operator": "=",
-                "value": "wordpress"
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Uptime minutes",
-        "type": "gauge"
-      },
-      {
-        "datasource": "influxdb",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {
-              "align": null
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 12,
-          "x": 11,
-          "y": 0
-        },
-        "id": 6,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "mean"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "7.1.5",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "10s"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "docker_container_net",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "rx_bytes"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "integral"
-                },
-                {
-                  "params": [
-                    10
-                  ],
-                  "type": "moving_average"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "app",
-                "operator": "=",
-                "value": "wordpress"
-              }
-            ]
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Neat network graph",
-        "type": "stat"
-      },
       {
         "aliasColors": {},
         "bars": false,
         "dashLength": 10,
         "dashes": false,
         "datasource": "influxdb",
-        "description": "Mysql",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {}
-          },
-          "overrides": []
-        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
-          "h": 16,
-          "w": 11,
+          "h": 8,
+          "w": 12,
           "x": 0,
-          "y": 10
+          "y": 0
         },
         "hiddenSeries": false,
-        "id": 2,
+        "id": 4,
         "legend": {
           "avg": false,
           "current": false,
@@ -347,8 +46,10 @@
         "lines": true,
         "linewidth": 1,
         "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
         "percentage": false,
-        "pluginVersion": "7.1.5",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -361,7 +62,7 @@
             "groupBy": [
               {
                 "params": [
-                  "10s"
+                  "$__interval"
                 ],
                 "type": "time"
               },
@@ -372,33 +73,30 @@
                 "type": "fill"
               }
             ],
-            "hide": false,
-            "measurement": "docker_container_cpu",
+            "measurement": "disk",
             "orderByTime": "ASC",
             "policy": "default",
-            "query": "SELECT mean(\"usage_percent\") FROM \"docker_container_cpu\" WHERE (\"container_name\" = 'k8s_mysql-container_mysql-deploy-78cfc47f99-fclhj_default_fa9789e0-a201-4096-8ddb-39087a7a5eec_0') AND $timeFilter GROUP BY time(10s) fill(null)",
-            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
               [
                 {
                   "params": [
-                    "usage_total"
+                    "used_percent"
                   ],
                   "type": "field"
                 },
                 {
                   "params": [],
-                  "type": "integral"
+                  "type": "mean"
                 }
               ]
             ],
             "tags": [
               {
-                "key": "app",
+                "key": "host",
                 "operator": "=",
-                "value": "wordpress"
+                "value": "wordpress-7c7b58b66c-hrlkc"
               }
             ]
           }
@@ -407,7 +105,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Cool cpu graph",
+        "title": "Panel Title",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -446,41 +144,36 @@
       },
       {
         "aliasColors": {},
-        "bars": true,
+        "bars": false,
         "dashLength": 10,
         "dashes": false,
         "datasource": "influxdb",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {}
-          },
-          "overrides": []
-        },
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
-          "h": 16,
+          "h": 8,
           "w": 12,
-          "x": 11,
-          "y": 10
+          "x": 12,
+          "y": 0
         },
         "hiddenSeries": false,
-        "id": 10,
+        "id": 6,
         "legend": {
-          "alignAsTable": false,
           "avg": false,
-          "current": true,
+          "current": false,
           "max": false,
           "min": false,
           "show": true,
-          "total": true,
-          "values": true
+          "total": false,
+          "values": false
         },
-        "lines": false,
+        "lines": true,
         "linewidth": 1,
         "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
         "percentage": false,
-        "pluginVersion": "7.1.5",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -493,7 +186,7 @@
             "groupBy": [
               {
                 "params": [
-                  "10s"
+                  "$__interval"
                 ],
                 "type": "time"
               },
@@ -504,7 +197,7 @@
                 "type": "fill"
               }
             ],
-            "measurement": "docker_container_cpu",
+            "measurement": "mem",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "A",
@@ -513,7 +206,7 @@
               [
                 {
                   "params": [
-                    "usage_system"
+                    "active"
                   ],
                   "type": "field"
                 },
@@ -525,9 +218,9 @@
             ],
             "tags": [
               {
-                "key": "app",
+                "key": "host",
                 "operator": "=",
-                "value": "wordpress"
+                "value": "wordpress-7c7b58b66c-hrlkc"
               }
             ]
           }
@@ -536,7 +229,131 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Totally informative system usage",
+        "title": "Panel Title",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "cpu",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_user"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "wordpress-7c7b58b66c-hrlkc"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Panel Title",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -574,15 +391,14 @@
         }
       }
     ],
-    "refresh": false,
-    "schemaVersion": 26,
+    "schemaVersion": 22,
     "style": "dark",
     "tags": [],
     "templating": {
       "list": []
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-6h",
       "to": "now"
     },
     "timepicker": {
@@ -600,7 +416,7 @@
       ]
     },
     "timezone": "",
-    "title": "wordpress",
-    "uid": "m_1pQgKMz",
-    "version": 2
+    "title": "wordpress:cpu-disk-mem",
+    "uid": "16ttg3aMk",
+    "version": 4
   }

@@ -8,7 +8,9 @@ metadata:
     metallb.universe.tf/allow-shared-ip: ip
 spec:
   ports:
-    - port: 5050
+    - name: telegraf
+      port: 5050
+      targetPort: 5050
   selector:
     app: wordpress
     tier: frontend
@@ -52,7 +54,6 @@ spec:
         name: wordpress
         ports:
         - containerPort: 5050
-          name: wordpress
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
