@@ -4,11 +4,11 @@
     "title": "Panel Title",
     "gridPos": {
       "x": 0,
-      "y": 16,
+      "y": 24,
       "w": 12,
       "h": 8
     },
-    "id": 8,
+    "id": 6,
     "targets": [
       {
         "refId": "A",
@@ -19,7 +19,7 @@
           {
             "key": "host",
             "operator": "=",
-            "value": "nginx"
+            "value": "mysql"
           }
         ],
         "groupBy": [

@@ -1,9 +1,7 @@
 #!/bin/sh
-IP=$(cat /ip.txt)
-adduser -D "fflores" 
+
+adduser "fflores"
 echo "fflores:fflores" | chpasswd
-chown fflores:fflores /srv/ftp
-echo "fflores" > /home/fflores/fflores.txt
-sed -i "s/###/$IP/g" /etc/vsftpd/vsftpd.conf
-telegraf --config telegraf.conf &
-vsftpd /etc/vsftpd/vsftpd.conf
+echo "helloworld" > /home/fflores/fflores_hw.txt
+
+supervisord

@@ -1,21 +1,27 @@
-FROM alpine:latest
-EXPOSE 5050
-RUN apk update  && apk upgrade
-RUN apk add wget
-RUN apk add nginx php7 php7-fpm php7-opcache \
-php7-gd php7-mysqli php7-zlib php7-curl \
-php7-mbstring php7-json php7-session
+FROM alpine:3.10
 
-RUN adduser -D -g 'www' www
-RUN mkdir /www
-RUN mkdir -p /run/nginx
-RUN chown -R www:www /var/lib/nginx
-RUN chown -R www:www /www
-RUN	wget https://wordpress.org/latest.tar.gz
-RUN	tar -zxvf latest.tar.gz -C /www/ && rm latest.tar.gz
-COPY wp-config.php /www/wordpress/
-COPY nginx_wordpress.conf /etc/nginx/conf.d/default.conf
-COPY ./ip.txt /
+EXPOSE 5050
+VOLUME [ “/sys/fs/cgroup” ]
+RUN apk update
+RUN apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl \
+    php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql \
+    php7-soap php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap \
+    php7-ctype php7-dom php7-phar
+RUN apk add nginx wget supervisor
+RUN mkdir -p /var/www/
+RUN mkdir -p /run/nginx/
+RUN rm /etc/nginx/conf.d/default.conf
+RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx-orig.conf
+COPY nginx.conf /etc/nginx/
+RUN wget https://ru.wordpress.org/latest-ru_RU.tar.gz
+RUN tar -xvf latest-ru_RU.tar.gz
+RUN mv wordpress /var/www/
+RUN rm latest-ru_RU.tar.gz
+COPY wp-config.php /var/www/wordpress/
+RUN chown -R nginx:nginx /var/www/
+RUN chown -R nginx:nginx /var/lib/nginx/
+RUN chown -R nginx:nginx /var/tmp/nginx/
+COPY supervisord.conf /etc/
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -34,7 +40,7 @@ RUN mkdir -p /usr/src /etc/telegraf && \
     rm -rf *.tar.gz* /usr/src && rm /etc/telegraf/telegraf.conf
 COPY telegraf.conf /
 
-#Launch
-COPY start.sh .
-RUN chmod +x start.sh
+
+COPY start.sh /
+RUN chmod 777 start.sh
 CMD ./start.sh

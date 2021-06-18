@@ -1,12 +1,15 @@
-FROM alpine:3
+FROM alpine:3.10
+
 EXPOSE 21 20
-EXPOSE 2000-2004
-RUN apk upgrade && apk update
-RUN apk add vsftpd && apk add openrc --no-cache && apk add openssl
-RUN mkdir /srv/ftp
-RUN mv /etc/vsftpd/vsftpd.conf /org_vsftpd.conf
-COPY ftp.conf /etc/vsftpd/vsftpd.conf
-RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=fflores' -keyout /etc/vsftpd/vsftpd.key -out /etc/vsftpd/vsftpd.crt
+EXPOSE 6000-6002
+RUN apk update
+RUN apk add vsftpd openssl wget supervisor
+RUN mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd_orig.conf
+COPY vsftpd.conf /etc/vsftpd/
+COPY supervisord.conf /etc/
+COPY stop-supervisor.sh /
+RUN chmod +x /stop-supervisor.sh
+RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=fflores' -keyout /etc/ssl/certs/ftps.key -out /etc/ssl/certs/ftps.crt
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -26,6 +29,5 @@ RUN mkdir -p /usr/src /etc/telegraf && \
 COPY telegraf.conf /
 
 COPY start.sh /
-COPY ./ip.txt /
-RUN chmod +x ./start.sh
+RUN chmod 777 start.sh
 CMD ./start.sh

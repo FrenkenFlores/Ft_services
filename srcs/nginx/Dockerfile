@@ -1,20 +1,17 @@
-FROM alpine
+FROM alpine:3.10
+
 EXPOSE 80 443 22
-RUN apk upgrade && apk update
-RUN apk add nginx
-RUN apk add openssl
-RUN apk add openssh
-RUN apk add openrc
-RUN adduser -D -g 'www' www
-RUN mkdir /www
+RUN apk update && apk add nginx
+RUN apk add openssl openssh openrc wget supervisor
+RUN mkdir -p /www
+COPY bember.html /www
 RUN mkdir -p /run/nginx
-RUN chown -R www:www /var/lib/nginx
-RUN chown -R www:www /www
-COPY start.sh /tmp/
-RUN chmod +x /tmp/start.sh
-COPY index.html /www/
+RUN chown -R nginx:nginx /var/lib/nginx
+RUN chown -R nginx:nginx /www
 RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
-RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=fflores' -keyout /etc/ssl/certs/nginx.key -out /etc/ssl/certs/nginx.crt
+COPY nginx.conf /etc/nginx/
+RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=bember' -keyout /etc/ssl/certs/nginx.key -out /etc/ssl/certs/nginx.crt
+COPY supervisord.conf /etc/
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -33,7 +30,7 @@ RUN mkdir -p /usr/src /etc/telegraf && \
     rm -rf *.tar.gz* /usr/src && rm /etc/telegraf/telegraf.conf
 COPY telegraf.conf /
 
-COPY nginx.conf /etc/nginx/
-CMD ./tmp/start.sh
 
-
+COPY start.sh /
+RUN chmod 777 start.sh
+CMD ./start.sh

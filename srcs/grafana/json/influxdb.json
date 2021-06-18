@@ -4,11 +4,11 @@
     "title": "Panel Title",
     "gridPos": {
       "x": 0,
-      "y": 16,
+      "y": 32,
       "w": 12,
       "h": 8
     },
-    "id": 8,
+    "id": 4,
     "targets": [
       {
         "refId": "A",
@@ -19,7 +19,7 @@
           {
             "key": "host",
             "operator": "=",
-            "value": "nginx"
+            "value": "dbinflux"
           }
         ],
         "groupBy": [
@@ -41,7 +41,7 @@
             {
               "type": "field",
               "params": [
-                "dirty"
+                "mapped"
               ]
             },
             {

@@ -1,7 +1,9 @@
-FROM alpine
-RUN apk update
-RUN	apk add influxdb
+FROM alpine:3.10
+
 EXPOSE 8086
+RUN apk update
+RUN apk add influxdb wget supervisor
+COPY supervisord.conf /etc/
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -22,6 +24,5 @@ COPY telegraf.conf /
 
 
 COPY start.sh /
-RUN chmod +x start.sh
-
+RUN chmod 777 start.sh
 CMD ./start.sh

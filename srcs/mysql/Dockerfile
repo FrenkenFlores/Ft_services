@@ -1,14 +1,12 @@
-FROM alpine:latest
-RUN apk update && apk upgrade
-RUN apk add mysql mysql-client
-RUN apk add openrc
-VOLUME [ "/var/lib/mysql" ]
-VOLUME [ "/sys/fs/cgroup" ]
-COPY start.sh /
-COPY my.cnf /etc/my.cnf.d/
-COPY database.sql /
-RUN chmod +xrw start.sh database.sql
+FROM alpine:3.10
+
+EXPOSE 3306
+RUN apk update
+RUN apk add openrc mysql mysql-client wget supervisor
+COPY mysqldb.sql /
+COPY my.cnf /etc/my.cnf.d/ 
 RUN chmod +r /etc/my.cnf
+COPY supervisord.conf /etc/
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -28,5 +26,6 @@ RUN mkdir -p /usr/src /etc/telegraf && \
 COPY telegraf.conf /
 
 
-EXPOSE 3306
-CMD /start.sh
+COPY start.sh /
+RUN chmod 777 start.sh
+CMD ./start.sh

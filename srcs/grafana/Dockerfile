@@ -1,15 +1,16 @@
-FROM alpine
+FROM alpine:3.10
+
 EXPOSE 3000
-VOLUME [/var/lib/grafana]
 RUN apk update
-RUN apk add --upgrade bash
-RUN apk add libc6-compat wget 
+RUN apk add libc6-compat wget supervisor
 RUN wget https://dl.grafana.com/oss/release/grafana-6.6.0.linux-amd64.tar.gz
 RUN tar -zxvf grafana-6.6.0.linux-amd64.tar.gz
-COPY grafana.ini /grafana-6.6.0/grafana.ini
-COPY influxdb-datasource.yaml /grafana-6.6.0/conf/provisioning/datasources/influxdb.yaml
-#COPY dashboards.yaml /grafana-6.6.0/conf/provisioning/dashboards/dashboards.yaml
-#COPY ./json/* /grafana-6.6.0/public/dashboards/
+RUN rm grafana-6.6.0.linux-amd64.tar.gz
+COPY influxdb.yaml /grafana-6.6.0/conf/provisioning/datasources/
+COPY grafana.ini grafana-6.6.0/conf/
+COPY supervisord.conf /etc/
+COPY stop-supervisor.sh /
+RUN chmod +x /stop-supervisor.sh
 
 #telegraf
 RUN apk add --no-cache iputils ca-certificates net-snmp-tools procps lm_sensors tzdata && \
@@ -28,6 +29,10 @@ RUN mkdir -p /usr/src /etc/telegraf && \
     rm -rf *.tar.gz* /usr/src && rm /etc/telegraf/telegraf.conf
 COPY telegraf.conf /
 
+COPY ./pods/* /
+COPY ./json/* /grafana-6.6.0/public/dashboards/
+COPY dashboard.yaml /grafana-6.6.0/conf/provisioning/dashboards/
+
 COPY start.sh /
-RUN chmod +x start.sh
+RUN chmod 777 start.sh
 CMD ./start.sh
