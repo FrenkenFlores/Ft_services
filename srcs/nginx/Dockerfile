@@ -4,13 +4,13 @@ EXPOSE 80 443 22
 RUN apk update && apk add nginx
 RUN apk add openssl openssh openrc wget supervisor
 RUN mkdir -p /www
-COPY bember.html /www
+COPY fflores.html /www
 RUN mkdir -p /run/nginx
 RUN chown -R nginx:nginx /var/lib/nginx
 RUN chown -R nginx:nginx /www
 RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
 COPY nginx.conf /etc/nginx/
-RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=bember' -keyout /etc/ssl/certs/nginx.key -out /etc/ssl/certs/nginx.crt
+RUN openssl req -days 365 -x509 -nodes -newkey rsa:2048 -subj '/C=RF/ST=MSK/L=SCHOOL-21/O=21/CN=fflores' -keyout /etc/ssl/certs/nginx.key -out /etc/ssl/certs/nginx.crt
 COPY supervisord.conf /etc/
 
 #telegraf
